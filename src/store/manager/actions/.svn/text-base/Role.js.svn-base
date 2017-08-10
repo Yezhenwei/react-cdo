@@ -1,0 +1,54 @@
+/*
+ * Role Action
+ * Date 2016-12-14 
+ * Author Wanglingying
+ */
+export const ROLE_LIST = 'ROLE_LIST';//资源分类列表
+export const ROLE_INFO = 'ROLE_INFO';//资源分类详情
+import {get,post} from '../../../api/BaseAction';
+import {Host} from '../../../api/Host';
+const type = null;
+
+export function roleList(data,callback) {
+	return get(`${Host}role/getByPage`, data , callback, (json)=> {
+		return {
+			type:ROLE_LIST,
+			json
+			}
+		}
+	)
+}
+
+export function roleInfo(data,callback) {
+	return get(`${Host}role/info`, data , callback, (json)=> {
+		return {
+			type:ROLE_INFO,
+			json
+			}
+		}
+	)
+}
+
+export function addRole(data,callback) {
+	return post(`${Host}role/add`, data , callback, (json)=> {return {type}})
+}
+
+export function editRole(data,callback) {
+	return post(`${Host}role/edit`, data , callback, (json)=> {return {type}})
+}
+
+export function deleteRole(data,callback) {
+	return get(`${Host}role/delete`, data , callback, (json)=> {return {type}})
+}
+
+export function startOrStop(data,callback) {
+	return get(`${Host}role/startOrStop`, data , callback, (json)=> {return {type}})
+}
+
+export function stopRole(data,callback) {
+	return get(`${Host}role/stop`, data , callback, (json)=> {return {type}})
+}
+
+export function deleteUserRoleIds(data,callback) {
+	return get(`${Host}user/deleteRole`, data , callback, (json)=> {return {type}})
+}

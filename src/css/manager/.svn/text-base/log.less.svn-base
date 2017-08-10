@@ -1,0 +1,10 @@
+/*
+ * 日志模块样式
+ * longentiao
+ */
+.log_container{
+    margin:1em;
+    .log_header{
+        padding:1em 0 1em 0;
+    }
+}

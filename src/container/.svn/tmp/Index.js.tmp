@@ -1,0 +1,137 @@
+/*
+ * 路由
+ * Date 2016-12-15
+ * Author Yezhenwei
+ */
+
+import ReactDOM from 'react-dom';
+import { IndexRoute, Router, Route, browserHistory } from 'react-router'
+import 'antd/dist/antd.less';
+import Login from './manager/Login';
+import NotFound from './NotFound';
+import BackApp from './manager/App';
+import PlatformApp from './platform/App';
+
+import Main from './platform/Main/Main';
+import Help from './platform/Help/Help';
+import Register from './platform/User/Register';
+import Infor from './platform/Info/Info';
+import InfoDetail from './platform/Info/InfoDetail';
+
+import Law from './platform/Rule/Rule';
+import RuleDetail from './platform/Rule/RuleDetail';
+
+import DataApply from './platform/DataApply/DataApply';
+import DataApplyDetail from './platform/DataApply/DataApplyDetail';
+import OtherDataApplyDetail from './platform/DataApply/OtherDataApplyDetail';
+
+import OpenData from './platform/OpenData/OpenData';
+
+import Interface from './platform/Interface/Interface';
+
+import DataAudit from './manager/DataAudit/DataAudit';
+import DataAuditApply from './manager/DataAudit/DataAuditApply';
+import DataAuditApplyInfo from './manager/DataAudit/DataAuditApplyInfo';
+import OrgAudit from './manager/OrgAudit/OrgAudit';
+import OrgAuditDetail from './manager/OrgAudit/OrgAuditDetail';
+import OrgAuditDetailInfo from './manager/OrgAudit/OrgAuditDetailInfo';
+
+import Info from './manager/Info/Information';
+import AddInfo from './manager/Info/AddInformation';
+
+import Rule from './manager/Rule/Regulation';
+import AddRule from './manager/Rule/AddRegulation';
+
+import Advice from './manager/Advice/Advice';
+
+import User from './manager/User/User';
+import SaveUser from './manager/User/SaveUser';
+import UserInfo from './manager/User/UserInfo';
+import Role from './manager/Role/Role';
+import SaveRole from './manager/Role/SaveRole';
+import RoleInfo from './manager/Role/RoleInfo';
+import Log from './manager/Log/Log';
+import Catalog from './manager/Catalog/Catalog';
+import Appraise from './manager/Catalog/Appraise';
+import SaveCatalog from './manager/Catalog/SaveCatalog';
+
+import '../css/index.less';
+import 'rc-banner-anim/assets/index.css';
+import  store from '../store/store.js';
+import { Provider } from 'react-redux';
+import "babel-polyfill";
+
+ReactDOM.render(
+    <Provider store={store}>
+    <Router history={browserHistory}>
+    <Route path="register" component={Register} />
+    	<Route path="platform" component={PlatformApp}>
+    			<Route path="help" component={Help} />
+    			<Route path="main" component={Main} />
+    			<Route path="dynamics" component={Infor} />
+    			<Route path="infoDetail" component={InfoDetail} />
+    			<Route path="law" component={Law} />
+    			<Route path="ruleDetail" component={RuleDetail} />
+    			
+    		<Route path="apply">
+    				<IndexRoute paths="dataApply" component={DataApply}/>
+           	<Route path="dataApply" component={DataApply} />
+           	<Route path="dataApplyDetail" component={DataApplyDetail} />
+           	<Route path="otherDataApplyDetail" component={OtherDataApplyDetail} />
+    		</Route>
+    		<Route path="open">
+    			<IndexRoute path="openData" component={OpenData} />
+	           	<Route path="openData" component={OpenData} />
+    		</Route>
+    		<Route path="Interface">
+    			<IndexRoute path="interface" component={Interface} />
+	           	<Route path="interface" component={Interface} />
+    		</Route>
+    	</Route>
+    		
+    	<Route path="/" component={BackApp}>
+    		<Route path="audit">
+    				<IndexRoute paths="dataAudit" component={DataAudit}/>
+           	<Route path="dataAudit" component={DataAudit} />
+           	<Route path="dataAuditApply" component={DataAuditApply} />
+           	<Route path="dataAuditApplyInfo" component={DataAuditApplyInfo} />
+           	<Route path="orgAudit" component={OrgAudit} />
+           	<Route path="orgAuditDetail" component={OrgAuditDetail} />
+           	<Route path="orgAuditDetailInfo" component={OrgAuditDetailInfo} />
+    		</Route>
+    	
+    		<Route path="public">
+    				<IndexRoute paths="info" component={Info}/>
+           	<Route path="info" component={Info} />
+           	<Route path="addInfo" component={AddInfo} />
+           	<Route path="rule" component={Rule} />
+           	<Route path="addRule" component={AddRule} />
+    		</Route>
+    	
+    		<Route path="communicate">
+    				<IndexRoute paths="advice" component={Advice}/>
+           	<Route path="advice" component={Advice} />
+    		</Route>
+    		
+    		<Route path="system">
+    			<IndexRoute paths="user" component={User}/>
+           		<Route path="user" component={User} />
+           		<Route path="saveUser" component={SaveUser} />
+           		<Route path="userInfo" component={UserInfo} />
+           		<Route path="role" component={Role} />
+           		<Route path="saveRole" component={SaveRole} />
+           		<Route path="roleInfo" component={RoleInfo} />
+           		<Route path="log" component={Log} />
+           		<Route path="catalog" component={Catalog} />
+           		<Route path="appraise" component={Appraise} />
+           		<Route path="saveCatalog" component={SaveCatalog} />
+    		</Route>
+        </Route>
+        <Route path="login" component={Login} />
+        <Route path="*" component={NotFound}/>
+    </Router>
+    </Provider>,
+    
+    document.getElementById('app')
+
+);

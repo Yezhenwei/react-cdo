@@ -1,0 +1,34 @@
+/*
+ * OrgAudit Action
+ * Date 2016-12-26
+ * Author Wanglingying
+ */
+export const ORGAUDIT_INFO = 'ORGAUDIT_INFO';
+export const ORGAUDIT_LIST = 'ORGAUDIT_LIST';
+import {get,post} from '../../../api/BaseAction';
+import {Host} from '../../../api/Host';
+const type = null;
+
+export function orgAuditInfo(data,callback) {
+	return get(`${Host}audit/info`, data , callback, (json)=> {
+		return {
+			type:ORGAUDIT_INFO,
+			json
+			}
+		}
+	)
+}
+
+export function orgAuditList(data,callback) {
+	return get(`${Host}audit/getByPage`, data , callback, (json)=> {
+		return {
+			type:ORGAUDIT_LIST,
+			json
+			}
+		}
+	)
+}
+
+export function editAudit(data,callback) {
+	return post(`${Host}audit/editAudit`, data , callback, (json)=> {return {type}})
+}

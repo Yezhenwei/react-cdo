@@ -1,0 +1,31 @@
+/*
+ * Regulation reducer
+ * Date 2016-12-15
+ * Author ZhouRui
+ */
+import { RULE_LIST,RULE_DETAIL } from '../actions/Regulation'
+
+const initeValue = {
+		current:1,    //当前页数
+		pageSize:10,  //每页条数
+		total:0,      //数据总量
+		list:[]       //列表数据
+};
+
+export const RuleList = (state = initeValue, action) => {
+  switch (action.type) {
+    case RULE_LIST:
+      return Object.assign({}, state, action.json)
+    default:
+      return state
+  }
+}
+
+export const RuleDetail = (state = {}, action) => {
+  switch (action.type) {
+    case RULE_DETAIL:
+      return Object.assign({}, state, action.json)
+    default:
+      return state
+  }
+}

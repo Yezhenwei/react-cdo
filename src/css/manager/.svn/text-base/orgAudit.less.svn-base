@@ -1,0 +1,50 @@
+.orgAudit{
+    .header{
+        padding:0.5em 0 0.5em 0;
+    }
+    .orgAudit_content{
+        padding:1em;
+    }
+    .form{
+        padding:1em 0 1.5em 0;
+    }
+    .opeate span{
+        margin-left: 0.3em;
+        cursor: pointer;
+    }
+    .search-button{
+        text-align:center;
+        padding:1.5em 0 0 0;
+    }
+}
+.org-audit-apply{
+    .footer-button{
+        padding:0.5em 0 1em 0;
+        text-align: center;
+    }
+    .apply-table{
+        background: #ECECEC;
+        padding: 15px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .apply-table table{
+        border-collapse:collapse;
+    } 
+    .apply-table table td{
+        padding-left:23px;
+        height:37px;
+        text-align:left;
+        border: 1px solid gainsboro;
+    }
+    .title-td{
+        background-color:#f7f7f7;
+    } 
+    .auditForm{
+        background: #ECECEC;
+        padding: 15px;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 9px;
+    }
+}

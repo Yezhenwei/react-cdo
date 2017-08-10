@@ -1,0 +1,83 @@
+/*
+ * 主页头部
+ * Date 2016-12-15
+ * Author Yezhenwei
+ */
+import React, { Component } from 'react'
+import {Modal, Icon, message, Row, Col, Menu, Switch, Input, Form} from 'antd';
+import cookie from 'react-cookie';
+import { browserHistory } from 'react-router';
+import ChangePw from "./User/ChangePw";
+const SubMenu = Menu.SubMenu;
+class Header extends Component {
+
+    constructor(props){
+			super(props);
+			this.state={
+				visible : false,
+		}
+			this.close = this._close.bind(this);
+	}
+
+
+    logout() {
+        Modal.confirm({
+            title: '您是否要退出系统',
+          //确认事件
+            onOk:() => {
+            		cookie.remove("loginUser");
+                browserHistory.push("/login");
+            }
+        });
+    }
+    
+    //密码修改弹框关闭
+    _close(){
+        this.setState({visible : false});
+    }
+    
+    /*hideBar(){
+     	* <Icon type="bars" className="bars" onClick={this.hideBar.bind(this)}/>
+    	var leftBar = document.getElementsByClassName("content")[0].firstChild;
+    	var content = document.getElementsByClassName("content")[0].lastChild;
+    	if(leftBar.className == "ant-col-0"){
+    		leftBar.className = "ant-col-4";
+    		content.className = "ant-col-20";
+    	} else{
+    		leftBar.className = "ant-col-0";
+    		content.className = "ant-col-24";
+    	}
+    	
+    }*/
+    
+    render() {
+    	const that = this;
+    	const user = cookie.load("loginUser");
+        return (
+            <div className="header-control">
+            <Row>
+            	<Col xs={{ span: 12}} sm={{ span: 12}} md={{ span: 8}} lg={{ span: 8}}>
+                    <span className="text-left"><b>广东省信用数据开放平台</b> 后台管理</span>
+                    
+              </Col>
+              <Col xs={{ span: 12}} sm={{ span: 8, offset: 4 }} md={{ span: 5, offset: 11 }} lg={{ span: 5, offset: 11 }} >
+              	<span className="text-right">
+<<<<<<< .mine
+                        <span >您好，</span>
+=======
+                        <span >您好，{user?user.name:""}</span>
+>>>>>>> .r5100
+                        <span className="sep">|</span>
+                        <span onClick={e=>{that.setState({visible: true})}} style={{cursor:'pointer'}}>修改密码</span>
+                        <span className="sep">|</span>
+                        <span onClick={this.logout} style={{cursor:'pointer'}} ><Icon type="logout" />&nbsp;退出</span>
+                    </span>
+                <ChangePw title="修改密码"  visible={this.state.visible} onCancel={this.close}/>
+            	</Col>
+            </Row>
+            </div>
+        )
+    }
+}
+
+export default Header;

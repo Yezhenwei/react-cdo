@@ -1,0 +1,23 @@
+/*
+ * 主样式
+ * Date 2016-12-15 
+ * Author Yezhenwei
+ */
+
+@import "manager/footer";
+@import "manager/header";
+@import "manager/commons";
+@import "manager/login";
+@import "manager/user";
+@import "manager/sider";
+@import "manager/log";
+@import "manager/role";
+@import "dataAudit";
+
+@import "platform/commons";
+@import "platform/header";
+@import "platform/help";
+@import "platform/main";
+@import "platform/carousel";
+
+

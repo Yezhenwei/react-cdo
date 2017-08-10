@@ -1,0 +1,66 @@
+/*
+ * Information action
+ * Date 2016-12-15
+ * Author ZhouRui
+ */
+export const INFOR_LIST = 'INFOR_LIST';//资讯列表
+export const INFO_DETAIL = 'INFO_DETAIL';//资讯信息
+import {get,post} from '../../../api/BaseAction';
+import {Host} from '../../../api/Host';
+const type = null;
+
+export function inforList(data,callback) {
+	return get(`${Host}information/getByPage`, data , callback, (json)=> {
+			return {
+				type: INFOR_LIST,
+				json
+			}
+		}
+	)
+}
+
+export function addInfo(data,callback) {
+	return post(`${Host}information/add`, data , callback, (json)=> {
+			return {
+				type: null
+			}
+		}
+	)
+}
+
+export function infoDetail(data,callback) {
+	return get(`${Host}information/getById`, data , callback, (json)=> {
+			return {
+				type: INFO_DETAIL,
+				json
+			}
+		}
+	)
+}
+
+export function editInfo(data,callback) {
+	return post(`${Host}information/update`, data , callback, (json)=> {
+			return {
+				type: null
+			}
+		}
+	)
+}
+
+export function deleteInfo(data,callback) {
+	return get(`${Host}information/delete`, data , callback, (json)=> {
+			return {
+				type: null
+			}
+		}
+	)
+}
+
+export function publicInfo(data,callback) {
+	return get(`${Host}information/updateState`, data , callback, (json)=> {
+			return {
+				type: null
+			}
+		}
+	)
+}

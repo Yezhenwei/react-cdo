@@ -1,0 +1,66 @@
+/*
+ *  前台Fetch请求封装  
+ *  Date 2017-3-1
+ * 	Author Yezhenwei
+ */
+import {polyfill} from "es6-promise";
+import fetch from "isomorphic-fetch";
+import cookie from 'react-cookie';
+import { message } from 'antd';
+function parseParams(data){
+  if(data == null){return '';}
+  let list = [];
+  for(let item in data){
+    list.push(`${item}=${data[item]}`)
+  }
+  return list.join("&");
+}
+
+function insertHeader(){
+	const id = cookie.load("platformUser")?cookie.load("platformUser").id:""; 
+	return {
+	  timeout: 10000,
+	  headers:{
+	  	"user_id": id,
+	  	"Content-Type": "application/json",
+	  	}
+	};
+}
+
+export function get(url="", data=null, callback=(json)=>{}, reducersConnect=(json)=>{},errorCallback=(json)=>{}){
+	const params = parseParams(data);
+  const tarUrl = data==null?url:`${url}?${params}`;
+  return dispatch=>{
+    return fetch(tarUrl, Object.assign({method: "GET"}, insertHeader()))
+      .then( response => {
+        return response.json()
+      })
+      .then(json=>{
+        callback(Object.assign({}, json));
+        dispatch(reducersConnect(json));
+      })
+      .catch(e=>{
+      	console.log(e)
+        errorCallback(e);
+      })
+  }
+}
+
+export function post(url="", data=null, callback=(json)=>{},reducersConnect=(json)=>{},errorCallback=(json)=>{},){
+  return dispatch=>{
+    return fetch(url, Object.assign({method: "POST",body:JSON.stringify(data)}, insertHeader()))
+      .then(response => {
+      	 	return response.json();
+      })
+      .then(json=>{
+        callback(Object.assign({}, json));
+        dispatch(reducersConnect(json));
+        
+      })
+      .catch(e=>{
+      	console.log(e)
+        errorCallback(e);
+      })
+  }
+}
+

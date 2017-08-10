@@ -1,0 +1,64 @@
+/*
+ * 前端数据仓库
+ * Date 2016-12-15 
+ * Author Yezhenwei
+ */
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import {UserList, UserInfo, Login} from './manager/reducers/User';
+import {CatalogList, CatalogInfo, TreeData,CatalogTree,AppraiseInfo} from './manager/reducers/Catalog'
+import {logListReducer} from './manager/reducers/Log'
+import {dataApplyListReducer,AuditInfo} from './manager/reducers/DataApplyManage'
+import {OrgAuditList,OrgAuditInfo} from './manager/reducers/OrgAudit'
+import {RoleList, RoleInfo} from './manager/reducers/Role';
+import {InforList,InfoDetail} from './manager/reducers/Information'
+import {RuleList,RuleDetail} from './manager/reducers/Regulation';
+import {AdviceList,AdviceDetail} from './manager/reducers/Advice';
+
+import { MenuItem, HotDataList, RewAndPenalList, Register } from './platform/reducers/Main';
+import { CheckUserList } from './platform/reducers/User';
+import { PersonInfo, MyApplyList, MyDownloadList, MyAdviceList, MyViewList } from './platform/reducers/Person';
+import {PlatformInterfaceInfoList,PlatformApplyInfo,PlatformInfoClassInfo,PlatformUserInfo,PlatformOrgList,PlatformPublicInfoList,PlatformTreeCategory,PlatformSubjectDomainList,PlatformNeedOpenInfoList} from './platform/reducers/DataApplyManage'
+import { FieldInfo,DataList } from './platform/reducers/OpenData';
+import thunkMiddleware from 'redux-thunk'
+import createLogger from 'redux-logger';
+import {logger,crashReporter} from './cookieMiddleware';
+
+const loggerMiddleware = createLogger({collapsed:true});
+
+ let store = createStore(
+    combineReducers({
+    		//用户管理
+        UserList, UserInfo, Login,
+        //日志管理
+        logListReducer,
+        //目录管理
+        CatalogList, CatalogInfo, TreeData,CatalogTree,AppraiseInfo,
+        //资源分类管理
+        RoleList,RoleInfo,
+        //数据申请审核
+        dataApplyListReducer,AuditInfo,
+        //前台数据申请
+        PlatformInterfaceInfoList,PlatformInfoClassInfo,PlatformUserInfo,PlatformOrgList,PlatformPublicInfoList,PlatformTreeCategory,PlatformSubjectDomainList,PlatformNeedOpenInfoList,
+        //机构注册审核
+        OrgAuditList,OrgAuditInfo,
+        //资讯管理
+        InforList,InfoDetail,
+        //政策管理
+        RuleList,RuleDetail,
+        //咨询建议
+        AdviceList, AdviceDetail,
+        //开放平台主页面
+        MenuItem, HotDataList, RewAndPenalList, Register,
+        //注册页面
+        CheckUserList,
+        //个人中心
+        PersonInfo, MyApplyList, MyDownloadList, MyAdviceList, MyViewList,
+        //开放数据
+        FieldInfo,DataList,
+        
+    }),
+    //applyMiddleware(thunkMiddleware, loggerMiddleware, logger, crashReporter)
+    applyMiddleware(thunkMiddleware, logger, crashReporter)
+);
+
+export default store;

@@ -1,0 +1,31 @@
+/*
+ * roleのReducer
+ * Date 2016-12-14 
+ * Author Wanglingying
+ */
+import { ROLE_LIST, ROLE_INFO } from '../actions/Role'
+
+const initeValue = {
+		current:1,    //当前页数
+		pageSize:10,  //每页条数
+		total:0,      //数据总量
+		list:[]       //列表数据
+};
+
+export const RoleList = (state = initeValue, action) => {
+  switch (action.type) {
+    case ROLE_LIST:
+      return Object.assign({}, state, action.json)
+    default:
+      return state
+  }
+}
+
+export const RoleInfo = (state = {}, action) => {
+  switch (action.type) {
+    case ROLE_INFO:
+      return Object.assign({}, state, action.json)
+    default:
+      return state
+  }
+}

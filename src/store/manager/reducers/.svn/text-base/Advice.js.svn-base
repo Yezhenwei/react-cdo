@@ -1,0 +1,26 @@
+import { ADVICE_LIST, ADVICE_DETAIL } from '../actions/Advice';
+
+const initeValue = {
+		current:1,    //当前页数
+		pageSize:10,  //每页条数
+		total:0,      //数据总量
+		list:[]       //列表数据
+};
+
+export const AdviceList = (state = initeValue, action) => {
+  switch (action.type) {
+    case ADVICE_LIST:
+      return Object.assign({}, state, action.json)
+    default:
+      return state
+  }
+}
+
+export const AdviceDetail = (state = {}, action) => {
+  switch (action.type) {
+    case ADVICE_DETAIL:
+      return Object.assign({}, state, action.json)
+    default:
+      return state
+  }
+}

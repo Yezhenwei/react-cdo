@@ -1,0 +1,31 @@
+export const ADVICE_LIST = 'ADVICE_LIST';//咨询建议列表
+export const ADVICE_DETAIL = 'ADVICE_DETAIL';//咨询建议信息
+
+import {get,post} from '../../../api/BaseAction';
+import {Host} from '../../../api/Host';
+
+const type = null;
+
+export function adviceList(data,callback){
+	return get(`${Host}advice/getByPage`, data , callback, (json)=> {
+		return {
+			type: ADVICE_LIST,
+			json
+		}
+	})
+}
+
+export function adviceDetail(data,callback){
+	return get(`${Host}advice/info`, data , callback, (json)=> {
+		return {
+			type: ADVICE_DETAIL,
+			json
+		}
+	})
+}
+
+export function deleteAdvice(data,callback) {
+	return get(`${Host}advice/delete`, data , callback, (json)=> {return {type: null}})}
+
+export function replyAdvice(data,callback) {
+	return get(`${Host}advice/updateState`, data , callback, (json)=> {return {type: null}})}

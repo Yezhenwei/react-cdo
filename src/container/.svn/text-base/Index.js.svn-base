@@ -1,0 +1,442 @@
+/*
+ * 路由
+ * Date 2016-12-15
+ * Author Yezhenwei
+ */
+
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import '../css/index.less';
+import  store from '../store/store.js';
+import "babel-polyfill";
+import { IndexRoute, Router, Route, browserHistory } from 'react-router'
+import NotFound from './NotFound';
+
+//import PlatformApp from './platform/App';
+const PlatformApp = (location, cb) =>{
+	require.ensure([], require =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/App').default);
+        }, 'PlatformApp')
+	})
+}
+
+//import BackApp from './manager/App';
+const BackApp = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/App').default);
+        }, 'BackApp')
+}
+
+//import Main from './platform/Main/Main';
+const Main = (location, cb) =>{
+	require.ensure([], require => {
+        cb(null, require('./platform/Main/Main').default);
+    }, 'Main')
+}
+
+//import Infor from './platform/Info/Info';
+const Infor = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/Info/Info').default);
+        }, 'Infor')
+}
+//import InfoDetail from './platform/Info/InfoDetail';
+const InfoDetail = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/Info/InfoDetail').default);
+        }, 'InfoDetail')
+}
+//import InfoResult from './platform/Info/InfoResult';
+const InfoResult = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/Info/InfoResult').default);
+        }, 'InfoResult')
+}
+//import Law from './platform/Rule/Rule';
+const Law = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/Rule/Rule').default);
+        }, 'Law')
+}
+//import RuleDetail from './platform/Rule/RuleDetail';
+const RuleDetail = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/Rule/RuleDetail').default);
+        }, 'RuleDetail')
+}
+//import RuleResult from './platform/Rule/RuleResult';
+const RuleResult = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/Rule/RuleResult').default);
+        }, 'RuleResult')
+}
+//import DataApply from './platform/DataApply/DataApply';
+const DataApply = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/DataApply/DataApply').default);
+        }, 'DataApply')
+}
+//import DataApplyDetail from './platform/DataApply/DataApplyDetail';
+const DataApplyDetail = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/DataApply/DataApplyDetail').default);
+        }, 'DataApplyDetail')
+}
+import OtherDataApplyDetail from './platform/DataApply/OtherDataApplyDetail';
+/*const OtherDataApplyDetail = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/DataApply/OtherDataApplyDetail').default);
+        }, 'OtherDataApplyDetail')
+}*/
+//import OpenData from './platform/OpenData/OpenData';
+const OpenData = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/OpenData/OpenData').default);
+        }, 'OpenData')
+}
+//import OpenDataDetail from './platform/OpenData/OpenDataDetail';
+const OpenDataDetail = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/OpenData/OpenDataDetail').default);
+        }, 'OpenDataDetail')
+}
+//import ShowData from './platform/OpenData/ShowData';
+const ShowData = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/OpenData/ShowData').default);
+        }, 'ShowData')
+}
+//import Interface from './platform/Interface/Interface';
+const Interface = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/Interface/Interface').default);
+        }, 'Interface')
+}
+//import InterfaceDetail from './platform/Interface/InterfaceDetail';
+const InterfaceDetail = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/Interface/InterfaceDetail').default);
+        }, 'InterfaceDetail')
+}
+
+//import Help from './platform/Help/Help';
+const Help = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/Help/Help').default);
+        }, 'Help')
+}
+
+import PersonApp from './platform/Person/App';
+/*const PersonApp = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/Person/App').default);
+        }, 'PersonApp')
+}*/
+//import MyInfo from './platform/Person/MyInfo';
+const MyInfo = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/Person/MyInfo').default);
+        }, 'MyInfo')
+}
+//import ChangePw from './platform/Person/ChangePw';
+const ChangePw = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/Person/ChangePw').default);
+        }, 'ChangePw')
+}
+//import MyApply from './platform/Person/MyApply';
+const MyApply = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/Person/MyApply').default);
+        }, 'MyApply')
+}
+//import RateData from './platform/Person/RateData';
+const RateData = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/Person/RateData').default);
+        }, 'RateData')
+}
+//import MyDownload from './platform/Person/MyDownload';
+const MyDownload = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/Person/MyDownload').default);
+        }, 'MyDownload')
+}
+//import MyAdvice from './platform/Person/MyAdvice';
+const MyAdvice = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/Person/MyAdvice').default);
+        }, 'MyAdvice')
+}
+//import MyView from './platform/Person/MyView';
+const MyView = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/Person/MyView').default);
+        }, 'MyView')
+}
+
+import Login from './manager/Login';
+/*const Login = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/Login').default);
+        }, 'Login')
+}*/
+import WelCome from './manager/Welcome';
+
+//import DataAudit from './manager/DataAudit/DataAudit';
+const DataAudit = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/DataAudit/DataAudit').default);
+        }, 'DataAudit')
+}
+//import DataAuditApply from './manager/DataAudit/DataAuditApply';
+const DataAuditApply = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/DataAudit/DataAuditApply').default);
+        }, 'DataAuditApply')
+}
+//import DataAuditApplyInfo from './manager/DataAudit/DataAuditApplyInfo';
+const DataAuditApplyInfo = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/DataAudit/DataAuditApplyInfo').default);
+        }, 'DataAuditApplyInfo')
+}
+//import OrgAudit from './manager/OrgAudit/OrgAudit';
+const OrgAudit = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/OrgAudit/OrgAudit').default);
+        }, 'OrgAudit')
+}
+//import OrgAuditDetail from './manager/OrgAudit/OrgAuditDetail';
+const OrgAuditDetail = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/OrgAudit/OrgAuditDetail').default);
+        }, 'OrgAuditDetail')
+}
+//import OrgAuditDetailInfo from './manager/OrgAudit/OrgAuditDetailInfo';
+const OrgAuditDetailInfo = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/OrgAudit/OrgAuditDetailInfo').default);
+        }, 'OrgAuditDetailInfo')
+}
+//import Info from './manager/Info/Information';
+const Info = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/Info/Information').default);
+        }, 'Info')
+}
+//import AddInfo from './manager/Info/AddInformation';
+const AddInfo = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/Info/AddInformation').default);
+        }, 'AddInfo')
+}
+
+//import Rule from './manager/Rule/Regulation';
+const Rule = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/Rule/Regulation').default);
+        }, 'Rule')
+}
+//import AddRule from './manager/Rule/AddRegulation';
+const AddRule = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/Rule/AddRegulation').default);
+        }, 'AddRule')
+}
+//import Advice from './manager/Advice/Advice';
+const Advice = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/Advice/Advice').default);
+        }, 'Advice')
+}
+//import User from './manager/User/User';
+const User = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/User/User').default);
+        }, 'User')
+}
+//import SaveUser from './manager/User/SaveUser';
+const SaveUser = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/User/SaveUser').default);
+        }, 'SaveUser')
+}
+//import UserInfo from './manager/User/UserInfo';
+const UserInfo = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/User/UserInfo').default);
+        }, 'UserInfo')
+}
+//import Role from './manager/Role/Role';
+const Role = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/Role/Role').default);
+        }, 'Role')
+}
+//import SaveRole from './manager/Role/SaveRole';
+const SaveRole = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/Role/SaveRole').default);
+        }, 'SaveRole')
+}
+//import RoleInfo from './manager/Role/RoleInfo';
+const RoleInfo = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/Role/RoleInfo').default);
+        }, 'RoleInfo')
+}
+//import Log from './manager/Log/Log';
+const Log = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/Log/Log').default);
+        }, 'Log')
+}
+//import Catalog from './manager/Catalog/Catalog';
+const Catalog = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/Catalog/Catalog').default);
+        }, 'Catalog')
+}
+//import Appraise from './manager/Catalog/Appraise';
+const Appraise = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/Catalog/Appraise').default);
+        }, 'Appraise')
+}
+//import SaveCatalog from './manager/Catalog/SaveCatalog';
+const SaveCatalog = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./manager/Catalog/SaveCatalog').default);
+        }, 'SaveCatalog')
+}
+
+const RegisterApp = (location, cb) =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/User/App').default);
+        }, 'RegisterApp')
+}
+
+const RegisterType = (location, cb) =>{
+	require.ensure([], require => {
+            cb(null, require('./platform/User/RegisterType').default);
+        }, 'RegisterType')
+}
+
+//import Register from './platform/User/Register';
+const PersonRegister = (location, cb) =>{
+	require.ensure([], require =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/User/PersonRegister').default);
+        }, 'PersonRegister')
+	})
+}
+
+const OrgRegister = (location, cb) =>{
+	require.ensure([], require =>{
+		require.ensure([], require => {
+            cb(null, require('./platform/User/OrgRegister').default);
+        }, 'OrgRegister')
+	})
+}
+
+render(
+    <Provider store={ store }>
+        <Router history={browserHistory} >
+	    	<Route path="/" onEnter={(nextState, replace) => replace('/platform/main')} getComponent={PlatformApp} />
+	    	<Route path="/platform" getComponent={PlatformApp}>
+	    		<IndexRoute getComponent={Main}/>
+				<Route path="main" getComponent={Main} />
+				<Route path="help" getComponent={Help} />
+				<Route path="dynamics">
+					<IndexRoute getComponent={Infor}/>
+		           	<Route path="dynamics" getComponent={Infor} />
+		           	<Route path="infoResult" getComponent={InfoResult} />
+		           	<Route path="infoDetail" getComponent={InfoDetail} />
+	    		</Route>
+				<Route path="law">
+					<IndexRoute getComponent={Law}/>
+		           	<Route path="law" getComponent={Law} />
+		           	<Route path="ruleResult" getComponent={RuleResult} />
+		           	<Route path="ruleDetail" getComponent={RuleDetail} />
+	    		</Route>
+	    		<Route path="apply">
+					<IndexRoute getComponent={DataApply}/>
+		           	<Route path="dataApply" getComponent={DataApply} />
+		           	<Route path="dataApplyDetail" getComponent={DataApplyDetail} />
+		           	<Route path="otherDataApplyDetail" component={OtherDataApplyDetail} />
+	    		</Route>
+	    		<Route path="open">
+	    			<IndexRoute getComponent={OpenData} />
+		           	<Route path="openData" getComponent={OpenData} />
+		           	<Route path="openDataDetail" getComponent={OpenDataDetail} />
+		           	<Route path="showData" getComponent={ShowData} />
+	    		</Route>
+	    		<Route path="Interface">
+	    			<IndexRoute getComponent={Interface} />
+		           	<Route path="interface" getComponent={Interface} />
+		           	<Route path="interfaceDetail" getComponent={InterfaceDetail} />
+	    		</Route>
+	    	</Route>
+	    	<Route getComponent={BackApp}>
+				<Route path="welcome">
+					<IndexRoute paths="welcome" component={WelCome}/>
+					<Route path="welcome" component={WelCome} />
+				</Route>
+	    		<Route path="audit">
+					<IndexRoute paths="dataAudit" getComponent={DataAudit}/>
+		           	<Route path="dataAudit" getComponent={DataAudit} />
+		           	<Route path="dataAuditApply" getComponent={DataAuditApply} />
+		           	<Route path="dataAuditApplyInfo" getComponent={DataAuditApplyInfo} />
+		           	<Route path="orgAudit" getComponent={OrgAudit} />
+		           	<Route path="orgAuditDetail" getComponent={OrgAuditDetail} />
+		           	<Route path="orgAuditDetailInfo" getComponent={OrgAuditDetailInfo} />
+	    		</Route>
+	    		<Route path="public">
+					<IndexRoute paths="info" getComponent={Info}/>
+		           	<Route path="info" getComponent={Info} />
+		           	<Route path="addInfo" getComponent={AddInfo} />
+		           	<Route path="rule" getComponent={Rule} />
+		           	<Route path="addRule" getComponent={AddRule} />
+	    		</Route>
+	    		<Route path="communicate">
+					<IndexRoute paths="advice" getComponent={Advice}/>
+		           	<Route path="advice" getComponent={Advice} />
+	    		</Route>
+	    		<Route path="system">
+	    			<IndexRoute paths="user" getComponent={User}/>
+	         		<Route path="user" getComponent={User} />
+	         		<Route path="saveUser" getComponent={SaveUser} />
+	         		<Route path="userInfo" getComponent={UserInfo} />
+	         		<Route path="role" getComponent={Role} />
+	         		<Route path="saveRole" getComponent={SaveRole} />
+	         		<Route path="roleInfo" getComponent={RoleInfo} />
+	         		<Route path="log" getComponent={Log} />
+	         		<Route path="catalog" getComponent={Catalog} />
+	         		<Route path="appraise" getComponent={Appraise} />
+	         		<Route path="saveCatalog" getComponent={SaveCatalog} />
+	    		</Route>
+	        </Route>
+	        <Route path="person" component={PersonApp}>
+	      		<IndexRoute paths="myInfo" getComponent={MyInfo}/>
+	      		<Route path="myInfo" getComponent={MyInfo} />
+	      		<Route path="changePw" getComponent={ChangePw} />
+	      		<Route path="myApply" getComponent={MyApply} />
+	      		<Route path="rateData" getComponent={RateData} />
+	      		<Route path="myDownload" getComponent={MyDownload} />
+	      		<Route path="myAdvice" getComponent={MyAdvice} />
+	      		<Route path="myView" getComponent={MyView} />
+	        </Route>
+	        <Route path="register" getComponent={RegisterApp}>
+	      		<IndexRoute paths="registerType" getComponent={RegisterType}/>
+	      		<Route path="registerType" getComponent={RegisterType} />
+	      		<Route path="org" getComponent={OrgRegister} />
+	      		<Route path="person" getComponent={PersonRegister} />
+      		</Route>
+	        <Route path="login" component={Login} />
+	        <Route path="*" component={NotFound}/>
+    </Router>
+    </Provider>,
+    document.getElementById('app')
+);

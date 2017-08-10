@@ -1,0 +1,36 @@
+/*
+ * 角色模块样式
+ * Date 2016-12-15 
+ * Author Wanglingying
+ */
+.role{
+    .header{
+        padding:1em 0 1em 0;
+    }
+    .header button{
+        margin-left: 0.5em;
+    }
+    .opeate span{
+    margin-left: 0.3em;
+    cursor: pointer;
+    }
+    .footer-button{
+        padding:1em 0 1em 0;
+        text-align: center;
+    }
+}
+
+.save-role{
+    .footer-button{
+        padding:1em 0 1em 0;
+        text-align: center;
+    }
+    .myCls{
+        max-height:25em;
+        overflow: auto;
+    }   
+    
+}
+
+
+

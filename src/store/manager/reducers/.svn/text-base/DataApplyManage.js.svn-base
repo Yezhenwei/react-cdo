@@ -1,0 +1,26 @@
+import { APPLYDATA_LIST ,APPLYDATA_INFO} from '../actions/DataApplyManage'
+
+const initeValue = {
+		current:1,    //当前页数
+		pageSize:10,  //每页条数
+		total:0,      //数据总量
+		list:[]       //列表数据
+};
+
+export const dataApplyListReducer = (state = initeValue, action) => {
+  switch (action.type) {
+    case APPLYDATA_LIST:
+      return Object.assign({}, state, action.json)
+    default:
+      return state
+  }
+};
+
+export const AuditInfo = (state = {}, action) => {
+  switch (action.type) {
+    case APPLYDATA_INFO:
+      return Object.assign({}, state, action.json)
+    default:
+      return state
+  }
+}

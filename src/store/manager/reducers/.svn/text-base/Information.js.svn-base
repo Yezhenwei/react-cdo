@@ -1,0 +1,31 @@
+/*
+ * Information reducer
+ * Date 2016-12-15
+ * Author ZhouRui
+ */
+import { INFOR_LIST,INFO_DETAIL } from '../actions/Information'
+
+const initeValue = {
+		current:1,    //当前页数
+		pageSize:10,  //每页条数
+		total:0,      //数据总量
+		list:[]       //列表数据
+};
+
+export const InforList = (state = initeValue, action) => {
+  switch (action.type) {
+    case INFOR_LIST:
+      return Object.assign({}, state, action.json)
+    default:
+      return state
+  }
+}
+
+export const InfoDetail = (state = {}, action) => {
+  switch (action.type) {
+    case INFO_DETAIL:
+      return Object.assign({}, state, action.json)
+    default:
+      return state
+  }
+}

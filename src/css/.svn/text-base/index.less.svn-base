@@ -1,0 +1,43 @@
+/*
+ * 主样式
+ * Date 2016-12-15 
+ * Author Yezhenwei
+ */
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+@import "manager/footer";
+@import "manager/header";
+@import "manager/commons";
+@import "manager/login";
+@import "manager/user";
+@import "manager/sider";
+@import "manager/log";
+@import "manager/role";
+@import "manager/dataAudit";
+@import "manager/orgAudit";
+@import "manager/info";
+@import "manager/rule";
+@import "manager/catalog";
+@import "manager/advice";
+
+@import "platform/commons";
+@import "platform/header";
+@import "platform/help";
+@import "platform/main";
+@import "platform/carpic";
+@import "platform/infor";
+@import "platform/dataApply";
+@import "platform/openData";
+@import "platform/law";
+@import "platform/login";
+@import "platform/person";
+@import "platform/register";
+@import "platform/registerType";
+
+@import "manager/table";
+
+

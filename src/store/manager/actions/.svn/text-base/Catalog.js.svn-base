@@ -1,0 +1,99 @@
+/*
+ * Catalog Action
+ * Date 2016-12-15 
+ * Author Yezhenwei
+ */
+export const CATALOG_LIST = 'CATALOG_LIST';//信息类列表
+export const CATALOG_INFO = 'CATALOG_INFO';//用户信息
+export const TREE_DATA = 'TREE_DATA';
+export const CATALOG_TREE = 'CATALOG_TREE';
+export const APPRAISE_INFO = 'APPRAISE_INFO';
+import {get,post} from '../../../api/BaseAction';
+import {Host} from '../../../api/Host';
+
+/*获取目录*/
+export function catalogList(data,callback) {
+	console.log(data)
+	return get(`${Host}directory/getByPage`, data , callback, (json)=> {
+		return {
+			type: CATALOG_LIST,
+			json}
+		}
+	)
+}
+/*获取一条信息类*/
+export function catalogInfo(data,callback) {
+	return get(`${Host}directory/getInfoClassById`, data , callback, (json)=> {
+		return {
+			type: CATALOG_INFO,
+			json
+		}
+	})
+}
+
+/*修改一条信息类*/
+export function saveCatalog(data,callback) {
+	console.log(data)
+	return post(`${Host}directory/edit`, data , callback, (json)=> {
+		return {
+			type: null
+		}
+		}
+	)
+	}
+/**
+ *获取部门以及属于该部门的信息类 
+ */
+export function getOrgAndInfoClass(data,callback) {
+	return get(`${Host}directory/getOrgAndInfoClass`, data , callback, (json)=> {
+		return {
+			type: TREE_DATA,
+			json
+		}
+	})
+}
+
+/*
+ * 信息项开放类型
+ */
+export function getOpenType(data,callback) {
+		return {
+			type: CATALOG_INFO,
+			data
+		}
+}
+/**
+ *数据脱敏类型 
+ */
+export function getTuoMin(data,callback) {
+		return {
+			type: CATALOG_INFO,
+			data
+		}
+}
+
+/*获取主题领域树*/
+export function getAll(data,callback) {
+	return get(`${Host}infoCategory/getAll`, data , callback, (json)=> {
+		return {
+			type: CATALOG_TREE,
+			json
+		}
+	})
+}
+
+/*获取星级评价详情*/
+export function appraiseInfo(data,callback) {
+	return get(`${Host}appraise/getById`, data , callback, (json)=> {
+		return {
+			type: APPRAISE_INFO,
+			json
+		}
+	})
+}
+
+//初始化开放信息
+export function initOpenType(data,callback) {
+	return get(`${Host}directory/initOpenType`, data , callback, (json)=> {return {type}})
+}
+

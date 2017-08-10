@@ -1,0 +1,33 @@
+/*
+ * store仓库
+ * Date 2016-12-15 
+ * Author Yezhenwei
+ */
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import {UserList, UserInfo, Login} from './manager/reducers/User'
+import {logListReducer} from './manager/reducers/Log'
+import thunkMiddleware from 'redux-thunk'
+import createLogger from 'redux-logger';
+import {logger,crashReporter} from './cookieMiddleware';
+
+const loggerMiddleware = createLogger();
+
+ let store = createStore(
+    combineReducers({
+        UserList,
+<<<<<<< .mine
+        logListReducer,
+=======
+        UserInfo,
+        Login,
+>>>>>>> .r4267
+    }),
+    applyMiddleware(
+      thunkMiddleware,
+      loggerMiddleware,
+      logger,
+      crashReporter
+    )
+);
+
+export default store;

@@ -1,0 +1,81 @@
+/*
+ * 树封装
+ * Date 2016-12-13
+ * Author Yezhenwei
+ * data：数据
+ * onSelect：选择事件
+ *
+ */
+
+import React, {Component, PropTypes} from "react";
+import {connect} from "react-redux";
+import {Link} from "react-router";
+import {Icon,Row,Col,Tree ,Spin} from 'antd';
+const TreeNode = Tree.TreeNode;
+
+class CdopTree extends Component{
+  static defaultProps={
+		data:[]
+	};
+	static propTypes = {
+		data: PropTypes.array,
+		onSelect:PropTypes.func,
+		onCheck:PropTypes.func
+	};
+  constructor(props){
+    super(props);
+    this.state={
+      	defaultExpandedKeys: ['1'],
+      	defaultSelectedKeys: ['1-1'],
+      	defaultCheckedKeys: ['1-1'],
+    };
+  
+  }
+  componentDidMount(){
+  	
+  }
+  onCheck(info) {
+    console.log('onCheck', info);
+    if(this.props.onCheck instanceof Function){
+  		this.props.onCheck(info);
+  	}
+  }
+  onSelect(info){
+  	if(this.props.onSelect instanceof Function){
+  		this.props.onSelect(info);
+  	}
+  }
+  render() {
+  	const getdata = [];
+  	const data =  this.props.data || getdata;
+  	const loop = data => data.map((item) => {
+     	if (item.children && item.children.length) {
+        return <TreeNode key={item.id} title={item.title}>{loop(item.children)}</TreeNode>;
+      }
+      return <TreeNode key={item.id} title={item.title} />;
+    });
+    return (
+    	<div>
+    	{
+    		data.length>0?(<Tree className="myTReeCls" showLine 
+								      	defaultExpandedKeys={this.state.defaultExpandedKeys}
+								      	defaultSelectedKeys={this.state.defaultSelectedKeys}
+								      	defaultCheckedKeys={this.state.defaultCheckedKeys}
+								        onSelect={this.onSelect.bind(this)} onCheck={this.onCheck.bind(this)}
+								      >
+								        { loop(data)}
+								      
+								      </Tree>):(<Spin tip="Loading..."></Spin>)
+    	}
+    	</div>
+     
+    )
+  }
+}
+CdopTree.contextTypes={
+  router: React.PropTypes.object.isRequired
+};
+function mapStateToProps(state){
+  return state
+}
+export default connect(mapStateToProps)(CdopTree)

@@ -1,0 +1,133 @@
+/*
+ * 列表封装 
+ * Date 2017-1-11
+ * Author Yezhenwei
+ * dataSource：列表数据
+ * pagination ：分页器
+ * pageSize:每页显示多少
+ * rowSelection: 选择器
+ *
+ */
+import React, { Component } from 'react';
+import cookie from 'react-cookie';
+import { connect } from 'react-redux';
+import { Row, Col, Input, Pagination, Card, Icon } from 'antd';
+
+export default class CdopList extends Component{
+	constructor(props){
+		super(props);
+		this.state={
+			postconfig:{
+				loading: false,
+		    pageSize:this.props.pageSize?this.props.pageSize:5,
+		    current:this.props.dataSource.data?this.props.dataSource.data.current:1
+			}
+		}
+		this.pageChange = this.pageChange.bind(this);
+		this.sizeChange = this.sizeChange.bind(this);
+	}
+	
+	
+/*
+ * 点击页码进行切换 
+ * @param current 切换后的页码
+ */
+	pageChange(current) {
+	   	this.setState({
+	  	   postconfig:{
+	  	   	
+				  current:current,
+				  
+				  pageSize:this.state.pageSize,
+				  
+			   },
+	   	},function(){
+		   	this.props.dispatch(this.props.setgrid(Object.assign({},this.props.postconfig, {pageNum: current }), (res)=>{
+	      		
+	      			this.setState({ loading: false });
+	     	 	
+	  		}));
+	   	});
+	}
+	
+	/*
+ * 输入页码进行切换
+ * @param current 切换后页码
+ * @param pageSize 页条数
+ */
+	sizeChange(current, pageSize) {
+		const userId = cookie.load("platformUser").id;
+	  	this.setState({
+	  	   postconfig:{
+				  pageSize:pageSize,
+				  loading: true
+			   },
+	   	},function(){
+				if(this.props.postconfig){
+					
+					this.props.dispatch(this.props.setgrid( Object.assign({},this.props.postconfig, {pageSize:pageSize }), (res)=>{
+			      		
+			      			this.setState({ loading: false });
+			     	 	
+			  		}));
+				}
+	   	});
+	}
+		/*
+	 * 显示总数
+	 * @param current 切换后页码
+	 * @param pageSize 页条数
+	 */
+		showTotal(total) {
+	  return `共 ${total} 条`;
+	}
+	
+	render(){
+		const that = this;
+		const dataSource = this.props.dataSource? this.props.dataSource.list : [];
+		const dataList = (data) => data.map((item)=>
+				<div className= "cdopList-row">
+					<Row>
+						<Col>
+						<Card  title={<h3>问题: {item.advice}</h3>} style={{ width: '100%' }} >
+							<div className="answer">回复: {item.content}</div>
+					  </Card>
+						</Col>
+					</Row>
+				</div>	
+		)
+		return(
+			<div className="cdopList">
+				<Row>
+					<Col span={22} offset={1}>
+					{dataSource.length > 0?
+    					<Row className="cdopList-container" style={{overflow: "auto",height: "581px"}}>
+    						<Col>
+    							{dataList(dataSource)}
+    						</Col>
+    					</Row>
+    					:
+				<div style={{textAlign: "center"}}><Icon type="meh-o" />没有数据哦</div>}
+    					<Row>
+							<Col>
+								<Pagination	className= "cdopList-page"
+								style={{float:"right",marginTop: "5px"}}
+								total={this.props.dataSource.total}
+								pageSize={this.props.dataSource.pageSize}
+								current={this.state.postconfig.current}
+								onChange= {this.pageChange}
+								onShowSizeChange= {this.sizeChange}
+								showSizeChanger= {true}
+								showQuickJumper= {true}
+								pageSizeOptions={["5",'10','20','50']}
+								showTotal={this.showTotal.bind(this, this.props.dataSource.total)}
+								/>
+							</Col>
+						</Row>
+					</Col>
+				</Row>
+				
+			</div>
+		)
+	}
+}

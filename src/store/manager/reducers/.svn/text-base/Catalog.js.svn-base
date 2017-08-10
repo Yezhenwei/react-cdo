@@ -1,0 +1,58 @@
+/*
+ * 用户Reducer
+ * Date 2016-12-15 
+ * Author Yezhenwei
+ */
+import { CATALOG_LIST, CATALOG_INFO,TREE_DATA ,CATALOG_TREE,APPRAISE_INFO} from '../actions/Catalog'
+
+const initeValue = {
+		current:1,    //当前页数
+		pageSize:10,  //每页条数
+		total:0,      //数据总量
+		list:[]       //列表数据
+};
+
+export const CatalogList = (state = initeValue, action) => {
+  switch (action.type) {
+    case CATALOG_LIST:
+      return Object.assign({}, state, action.json)
+    default:
+      return state
+  }
+}
+
+export const TreeData = (state = [], action) => {
+  switch (action.type) {
+    case TREE_DATA:
+      return Object.assign([], state, action.json)
+    default:
+      return state
+  }
+}
+
+export const CatalogInfo = (state = {}, action) => {
+  switch (action.type) {
+    case CATALOG_INFO:
+      return Object.assign({}, state, action.json)
+    default:
+      return state
+  }
+}
+
+export const CatalogTree = (state = {}, action) => {
+  switch (action.type) {
+    case CATALOG_TREE:
+      return Object.assign([], state, action.json)
+    default:
+      return state
+  }
+}
+
+export const AppraiseInfo = (state = initeValue, action) => {
+  switch (action.type) {
+    case APPRAISE_INFO:
+      return Object.assign({}, state, action.json)
+    default:
+      return state
+  }
+}

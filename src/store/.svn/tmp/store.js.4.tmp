@@ -1,0 +1,55 @@
+/*
+ * store仓库
+ * Date 2016-12-15 
+ * Author Yezhenwei
+ */
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import {UserList, UserInfo, Login} from './manager/reducers/User';
+import {CatalogList, CatalogInfo, TreeData,CatalogTree} from './manager/reducers/Catalog'
+import {logListReducer} from './manager/reducers/Log'
+import {dataApplyListReducer,AuditInfo} from './manager/reducers/DataApplyManage'
+import {OrgAuditList,OrgAuditInfo} from './manager/reducers/OrgAudit'
+<<<<<<< .mine
+import {PlatformDataApplyListReducer,PlatformApplyInfo,PlatformInfoClassInfo,PlatformUserInfo,PlatformOrgList,PlatformPublicInfoList,PlatformTreeCategory,PlatformSubjectDomainList} from './platform/reducers/DataApplyManage'
+=======
+import {PlatformDataApplyListReducer,PlatformApplyInfo,PlatformInfoClassInfo,PlatformUserInfo,PlatformOrgList,PlatformPublicInfoList,PlatformTreeCategory} from './platform/reducers/DataApplyManage'
+>>>>>>> .r5729
+import {RoleList, RoleInfo} from './manager/reducers/Role';
+import {InforList,InfoDetail} from './manager/reducers/Information'
+import {RuleList,RuleDetail} from './manager/reducers/Regulation';
+import thunkMiddleware from 'redux-thunk'
+import createLogger from 'redux-logger';
+import {logger,crashReporter} from './cookieMiddleware';
+
+const loggerMiddleware = createLogger();
+
+ let store = createStore(
+    combineReducers({
+    	//用户管理
+        UserList, UserInfo, Login,
+        //日志管理
+        logListReducer,
+        //目录管理
+        CatalogList, CatalogInfo, TreeData,CatalogTree,
+        //资源分类管理
+        RoleList,RoleInfo,
+        //数据申请审核
+        dataApplyListReducer,AuditInfo,
+        //前台数据申请
+<<<<<<< .mine
+        PlatformDataApplyListReducer,PlatformApplyInfo,PlatformInfoClassInfo,PlatformUserInfo,PlatformOrgList,PlatformPublicInfoList,PlatformTreeCategory,PlatformSubjectDomainList,
+=======
+        PlatformDataApplyListReducer,PlatformApplyInfo,PlatformInfoClassInfo,PlatformUserInfo,PlatformOrgList,PlatformPublicInfoList,PlatformTreeCategory,
+>>>>>>> .r5729
+        //机构注册审核
+        OrgAuditList,OrgAuditInfo,
+        //资讯管理
+        InforList,InfoDetail,
+        //政策管理
+        RuleList,RuleDetail,
+        
+    }),
+    applyMiddleware(thunkMiddleware, loggerMiddleware, logger, crashReporter)
+);
+
+export default store;

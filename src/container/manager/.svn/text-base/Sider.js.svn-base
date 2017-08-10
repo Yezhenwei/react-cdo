@@ -1,0 +1,58 @@
+/*
+ * 主页头部
+ * Date 2016-12-15
+ * Author Yezhenwei
+ */
+
+import React, { Component, PropTypes} from "react";
+import {Modal, Icon, message, Row, Col, Menu, Switch, Input, Form} from 'antd';
+import cookie from 'react-cookie';
+import { browserHistory } from 'react-router';
+const SubMenu = Menu.SubMenu;
+
+class Sider extends Component {
+	constructor(props){
+	    super(props);
+	    this.state={
+        current: "user"
+	    };
+	}
+
+	 /*
+   * 左侧导航栏点击
+   * @param e Menu的key
+   * @return message 操作结果
+   */
+    handleClick(e) {
+	    this.setState({
+	      current: e.key
+	    });
+	    browserHistory.push('/'+e.keyPath[1]+'/'+e.keyPath[0]);
+  }
+
+    render(){
+        return (
+          <Menu onClick={this.handleClick.bind(this)} selectedKeys={[this.state.current]} mode="inline" className="manage-sider">
+              <SubMenu key="audit" title={<span><Icon type="appstore-o" /><span>审核管理</span></span>}>
+                  <Menu.Item key="dataAudit"><span>数据申请审核</span></Menu.Item>
+                  <Menu.Item key="orgAudit"><span>机构注册审核</span></Menu.Item>
+              </SubMenu>
+              <SubMenu key="public" title={<span><Icon type="desktop" /><span>信息发布</span></span>}>
+                  <Menu.Item key="info"><span>资讯管理</span></Menu.Item>
+                  <Menu.Item key="rule"><span>政策法规管理</span></Menu.Item>
+              </SubMenu>
+              <SubMenu key="communicate" title={<span><Icon type="message" /><span>交流互动</span></span>}>
+                  <Menu.Item key="advice"><span>咨询建议</span></Menu.Item>
+              </SubMenu>
+              <SubMenu key="system" title={<span><Icon type="setting" /><span>系统管理</span></span>}>
+                  <Menu.Item key="user"><span>用户管理</span></Menu.Item>
+                  <Menu.Item key="role"><span>资源分类管理</span></Menu.Item>
+                  <Menu.Item key="catalog"><span>目录管理</span></Menu.Item>
+                  <Menu.Item key="log"><span>日志管理</span></Menu.Item>
+              </SubMenu>
+          </Menu>
+        )
+    }
+}
+
+export default Sider;

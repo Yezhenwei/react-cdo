@@ -1,0 +1,37 @@
+/*
+ * 基础样式
+ * Date 2016-12-17
+ * Author Yezhenwei
+ */
+
+.banner {
+  .content{
+    height: 869px;
+    .panel {
+          background-color: white;
+          height: 869px;
+          overflow-y: auto;
+        }
+  }
+    .welcome-logo{
+        margin: 0 auto;
+        background: url(../../image/welcome.jpg);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        height: 869px;
+        width: 100%;
+      }
+}
+
+.hander{
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.breadcrumb {
+        margin: 0.5em 0 0.5em 1em;
+        font-size: 1em;
+    }
+
+
+

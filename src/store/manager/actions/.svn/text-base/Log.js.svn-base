@@ -1,0 +1,14 @@
+export const LOG_LIST = 'LOG_LIST';
+import {get} from '../../../api/BaseAction';
+import {Host} from '../../../api/Host';
+const type = null;
+
+export function logListAction(data,callback) {
+	return get(`${Host}log/getByCondition`, data , callback, (json)=> {
+			return {
+				type: LOG_LIST,
+				json
+			}
+		}
+	)
+}

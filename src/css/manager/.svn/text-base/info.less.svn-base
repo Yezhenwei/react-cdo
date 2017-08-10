@@ -1,0 +1,63 @@
+.info{
+    .header{
+        padding:0.5em 0 0.5em 0;
+        margin-left:1em;
+        
+        .search {
+            float: right;
+            width: 20em;
+        }
+    }
+    
+    .header button{
+        margin-left: 0.5em;
+    }
+    
+    .opeate span{
+        margin-left: 0.3em;
+        cursor: pointer;
+    }
+}
+
+.add-info{
+    .header{
+        padding:0.5em 0 0.5em 0;
+        margin-left:1em;
+    }
+    .footer-button{
+        padding:1em 0 1em 0;
+        text-align: center;
+    }
+    .footer-button button{
+        margin-left: 0.5em;
+    }
+    
+    .body-textarea{
+        width:99%;
+        margin:0.5em;
+    }
+    
+    .margin{
+        margin:1em;
+    }
+    
+    .input{
+        width:200;
+    }
+    
+    .content-div{
+        height:500px;
+        width:99%;
+        border:1px solid #000;
+        text-overflow:ellipsis; 
+        -o-text-overflow:ellipsis;
+        overflow-y: auto;
+        margin:10px;
+        border-radius:3px;
+        border-color:#cccccc;//阴影效果颜色
+        box-shadow: 2px 4px 6px #cccccc;//阴影效果位置，大小和颜色
+    }
+    
+}
+
+

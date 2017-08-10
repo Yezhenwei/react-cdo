@@ -1,0 +1,33 @@
+export const APPLYDATA_LIST = 'APPLYDATA_LIST';
+export const APPLYDATA_INFO = 'APPLYDATA_INFO';
+import {get,post} from '../../../api/BaseAction';
+import {Host} from '../../../api/Host';
+const type = null;
+
+export function dataApplyListAction(data,callback) {
+	return get(`${Host}audit/getByCondition`, data , callback, (json)=> {
+			return {
+				type: APPLYDATA_LIST,
+				json
+			}
+		}
+	)
+}
+
+export function auditInfo(data,callback) {
+	return get(`${Host}audit/info`, data , callback, (json)=> {
+		return {
+			type:APPLYDATA_INFO,
+			json
+			}
+		}
+	)
+}
+
+export function editAudit(data,callback) {
+	return post(`${Host}audit/editAudit`, data , callback, (json)=> {return {type}})
+}
+
+export function deleteAuditByUserId(data,callback) {
+	return get(`${Host}audit/deleteAuditByUserId`, data , callback, (json)=> {return {type}})
+}

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>信用数据开放平台</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="/build/bundle.js"></script>
+</body>
+</html>

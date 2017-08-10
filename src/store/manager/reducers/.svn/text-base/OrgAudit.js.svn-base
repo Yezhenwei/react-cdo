@@ -1,0 +1,32 @@
+/*
+ * OrgAuditのReducer
+ * Date 2016-12-26 
+ * Author Wanglingying
+ */
+
+import { ORGAUDIT_INFO,ORGAUDIT_LIST} from '../actions/OrgAudit'
+
+const initeValue = {
+		current:1,    //当前页数
+		pageSize:10,  //每页条数
+		total:0,      //数据总量
+		list:[]       //列表数据
+};
+
+export const OrgAuditInfo = (state = {}, action) => {
+  switch (action.type) {
+    case ORGAUDIT_INFO:
+      return Object.assign({}, state, action.json)
+    default:
+      return state
+  }
+}
+
+export const OrgAuditList = (state = initeValue, action) => {
+  switch (action.type) {
+    case ORGAUDIT_LIST:
+      return Object.assign({}, state, action.json)
+    default:
+      return state
+  }
+}
